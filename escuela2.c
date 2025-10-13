@@ -157,7 +157,7 @@ case 3:
     // Imprimir tabla de calificaciones
      printf("\n-------------------------------------Calificaciones------------------------------------\n");
     printf("#\tEstudiante\t\t%s\t%s\t%s\tPromedioF\n", asignatura[0], asignatura[1], asignatura[2]);
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < cantidadE; i++) {
         printf("%d\t%s\t\t\t%.2f\t%.2f\t%.2f\t%.2f\n", i+1, nombre[i], PromedioC[i][0], PromedioC[i][1], PromedioC[i][2], PromedioF[i]);
     }
     break;
