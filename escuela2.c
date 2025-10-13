@@ -176,7 +176,7 @@ case 3:
                 break;
             }
     // Calcular promedios, máximos y mínimos por estudiante
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < cantidadE; i++) {
         float max = PromedioC[i][0];
         float min = PromedioC[i][0];
         for (int j = 1; j < 3; j++) {
@@ -187,7 +187,7 @@ case 3:
         minEstudiante[i] = min;
     }
     printf("\n---------------------- NOTA MAXIMA Y MINIMA POR ESTUDIANTE ----------------------\n"); 
-    for (int i = 0; i < 5; i++) { 
+    for (int i = 0; i < cantidadE; i++) { 
     printf("%-20s\tMax: %.2f\tMin: %.2f\n", nombre[i], maxEstudiante[i], minEstudiante[i]);
     };
     break;
@@ -210,7 +210,7 @@ case 3:
         float max = PromedioC[0][j];
         float min = PromedioC[0][j];
  
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < cantidadE; i++) {
             suma += PromedioC[i][j];
  
             if (PromedioC[i][j] > max) max = PromedioC[i][j];
