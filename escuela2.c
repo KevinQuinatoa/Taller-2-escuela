@@ -34,7 +34,7 @@ int main() {
          {
             printf("Error: ingrese un numero valido (no letras).\n");
             while (getchar() != '\n'); // limpia el búfer
-            continue; // volver a pedir la nota
+            continue; // volver a pedir la opcion
         }
         if (opcion <1 || opcion>7)
         {
@@ -236,10 +236,20 @@ case 3:
     break;
     case 7:
     printf("saliendo del programa...\n");
-    break;
+    return 0;
 } 
-printf("desea continuar en el programa 1=si 2=no : ");
-scanf("%d", &continuar);
+    // preguntar si desea continuar
+    // validar que la entrada sea un numero del 1 al 2 y no letras
+    do {
+        printf("desea continuar en el programa 1=si 2=no : ");
+        if (scanf("%d", &continuar) != 1) 
+         {
+            printf("Error: ingrese un numero valido (no letras).\n");
+            while (getchar() != '\n'); // limpia el búfer
+         }
+    } while(continuar!=1 && continuar!=2);
+    
+    
     } while(continuar==1);
    
 }    
