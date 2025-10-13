@@ -102,7 +102,7 @@ case 3:
     
 
     float calificacion[5][3][2]; // 5 estudiantes, 3 asignaturas, 2 notas por asignatura
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < cantidadE; i++) {
         printf("Ingrese las calificaciones del estudiante %s:\n", nombre[i]);
         float sumaMaterias = 0;
 
@@ -147,11 +147,11 @@ case 3:
                 break;
             }
     if (asignaturaI == 0) { // verificar si las asignaturas fueron ingresados con anterioridad
-                printf("Primero debe ingresar las asignaturas (opcion 2).\n");
+                printf("Ingrese las asignaturas (opcion 2).\n");
                 break;
             }
     if (calificacionE == 0) { // verificar si las calificaciones fueron ingresados con anterioridad
-                printf("Primero debe ingresar las calificaciones (opcion 3).\n");
+                printf("Ingrese las calificaciones (opcion 3).\n");
                 break;
             }
     // Imprimir tabla de calificaciones
@@ -167,12 +167,12 @@ case 3:
                 printf("Primero debe ingresar los estudiantes (opcion 1).\n");
                 break;
             }
-    if (calificacionE == 0) { // verificar si las calificaciones fueron ingresados con anterioridad
-                printf("Primero debe ingresar las calificaciones (opcion 3).\n");
+    if (asignaturaI == 0) { // verificar si las asignaturas fueron ingresados con anterioridad
+                printf("Ingrese las asignaturas (opcion 2).\n");
                 break;
             }
-    if (asignaturaI == 0) { // verificar si las asignaturas fueron ingresados con anterioridad
-                printf("Primero debe ingresar las asignaturas (opcion 2).\n");
+    if (calificacionE == 0) { // verificar si las calificaciones fueron ingresados con anterioridad
+                printf("Ingrese las calificaciones (opcion 3).\n");
                 break;
             }
     // Calcular promedios, máximos y mínimos por estudiante
@@ -196,12 +196,12 @@ case 3:
                 printf("Primero debe ingresar los estudiantes (opcion 1).\n");
                 break;
             }
-    if (calificacionE == 0) { // verificar si las calificaciones fueron ingresados con anterioridad
-                printf("Primero debe ingresar las calificaciones (opcion 3).\n");
+    if (asignaturaI == 0) { // verificar si las asignaturas fueron ingresados con anterioridad
+                printf("Ingrese las asignaturas (opcion 2).\n");
                 break;
             }
-    if (asignaturaI == 0) { // verificar si las asignaturas fueron ingresados con anterioridad
-                printf("Primero debe ingresar las asignaturas (opcion 2).\n");
+    if (calificacionE == 0) { // verificar si las calificaciones fueron ingresados con anterioridad
+                printf("Ingrese las calificaciones (opcion 3).\n");
                 break;
             }
     // Calcular promedio, máximo, mínimo y aprobados/reprobados por asignatura
