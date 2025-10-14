@@ -41,9 +41,9 @@ int main() {
             // Ingresar nombres de estudiantes
             do {
                 printf("Cuantos estudiantes desea ingresar (1-5): ");
-                if (scanf("%d", &cantidadE) != 1) {
+                if (scanf("%d", &cantidadE) != 1) {// validar entrada
                     printf("Error: ingrese un numero valido.\n");
-                    while (getchar() != '\n');
+                    while (getchar() != '\n');// limpiar buffer
                     continue;
                 }
                 if (cantidadE < 1 || cantidadE > 5) {
