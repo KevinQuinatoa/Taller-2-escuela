@@ -8,7 +8,7 @@ int main() {
     float maxEstudiante[5], minEstudiante[5];
     int aprobados[3] = {0}, reprobados[3] = {0};
     int opcion, continuar;
-    int cantidadE = 0, asignaturaI = 0, calificacionE = 0;
+    int cantidadE = 0, asignaturaI = 0, calificacionE = 0; // verificar  si se ingresaron los datos del case 1, 2 y 3
 
     do {
         // menú principal
@@ -77,7 +77,7 @@ int main() {
             }
 
             int materiaSeleccionada;
-            while (1) {
+            while (1) { // filtro para los caracteres no numericos y fuera de rango
                 printf("\nSeleccione la asignatura para ingresar calificaciones:\n");
                 for (int j = 0; j < 3; j++) {
                     printf("%d. %s\n", j + 1, asignatura[j]);
@@ -86,7 +86,7 @@ int main() {
 
                 if (scanf("%d", &materiaSeleccionada) != 1) {
                     printf("Error: ingrese un numero valido (no letras).\n");
-                    while (getchar() != '\n');
+                    while (getchar() != '\n');// limpiar buffer
                     continue;
                 }
 
@@ -149,6 +149,7 @@ int main() {
                 printf("Debe completar las opciones 1, 2 y 3 primero.\n");
                 break;
             }
+            // imprimir la tabla de calificacioness
 
             printf("\n---------------------------------- CALIFICACIONES ----------------------------------\n");
             printf("#\t%-15s\t%s\t%s\t%s\tPromedioF\n", "Estudiante", asignatura[0], asignatura[1], asignatura[2]);
@@ -163,7 +164,7 @@ int main() {
                 printf("Debe completar las opciones 1, 2 y 3 primero.\n");
                 break;
             }
-
+            // calcular y mostrar nota maxima y minima por estudiante
             printf("\n--------------- NOTA MAXIMA Y MINIMA POR ESTUDIANTE ---------------\n");
             for (int i = 0; i < cantidadE; i++) {
                 float max = PromedioC[i][0], min = PromedioC[i][0];
@@ -182,14 +183,14 @@ int main() {
             }
 
             int materiaSeleccionada6;
-            while (1) {
+            while (1) { // filtro para los caracteres no numericos y fuera de rango permite hacer varias consultas
                 printf("\nSeleccione la asignatura que desea consultar:\n");
                 for (int a = 0; a < 3; a++) {
                     printf("%d. %s\n", a + 1, asignatura[a]);
                 }
                 printf("Ingrese el numero de la asignatura (1-3): ");
 
-                if (scanf("%d", &materiaSeleccionada6) != 1) {
+                if (scanf("%d", &materiaSeleccionada6) != 1) { // validar entrada solo una vez
                     printf("Error: ingrese un numero valido (no letras).\n");
                     while (getchar() != '\n');
                     continue;
