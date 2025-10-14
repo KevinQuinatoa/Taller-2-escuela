@@ -1,255 +1,246 @@
 #include <stdio.h>
-#include <string.h>
-
 
 int main() {
     char nombre[5][20];
     char asignatura[3][30];
-    float PromedioC[5][3]; // 5 estudiantes, 3 asignaturas
-    float PromedioF[5]; // Promedio final de cada estudiante
+    float PromedioC[5][3] = {0}; // calificaciones por estudiante y asignatura
+    float PromedioF[5] = {0};    // promedio final por estudiante
     float maxEstudiante[5], minEstudiante[5];
-    float maxAsignatura[3], minAsignatura[3];
     int aprobados[3] = {0}, reprobados[3] = {0};
     int opcion, continuar;
-    // valores para controlar si se ingresaron estudiante, asignaturas y calificaciones 
-    //anteriormente
-    int cantidadE = 0;
-    int asignaturaI = 0;
-    int calificacionE = 0;
+    int cantidadE = 0, asignaturaI = 0, calificacionE = 0;
 
-    // continuar con el programa
     do {
-        // menu de opciones
-         do {
-        printf("seleccione una opcion: \n");
-        printf("1. ingresar los nombres de los estudiantes\n");
-        printf("2. ingrese los nombres de las asignaturas\n");
-        printf("3. ingresar las calificaciones\n");
-        printf("4. mostrar la tabla de calificaciones con el promedio final\n");
-        printf("5. mostrar la nota maxima y minima por estudiante\n");
-        printf("6. mostrar el numero de aprobados y reprobados por asignatura\n");
-        printf("7. salir\n");
-        printf("Ingrese su opcion: ");
-         if (scanf("%d", &opcion) != 1) 
-         {
-            printf("Error: ingrese un numero valido (no letras).\n");
-            while (getchar() != '\n'); // limpia el búfer
-            continue; // volver a pedir la opcion
-        }
-        if (opcion <1 || opcion>7)
-        {
-            printf("Opcion no valida, por favor intente de nuevo.\n");
-        }
-        
-       
-    } while(opcion <1 || opcion>7);
+        // menú principal
+        do {
+            printf("\nSeleccione una opcion:\n");
+            printf("1. Ingresar los nombres de los estudiantes\n");
+            printf("2. Ingresar los nombres de las asignaturas\n");
+            printf("3. Ingresar las calificaciones\n");
+            printf("4. Mostrar tabla de calificaciones con promedio final\n");
+            printf("5. Mostrar nota maxima y minima por estudiante\n");
+            printf("6. Mostrar aprobados y reprobados por asignatura\n");
+            printf("7. Salir\n");
+            printf("Ingrese su opcion: ");
 
-switch (opcion)
-{
-case 1:
-    // Leer nombres de estudiantes
-    do {
-        printf("Cuantos estudiantes desea ingresar (max 5): ");
-         if (scanf ("%d", &cantidadE) != 1) 
-         {
-            printf("Error: ingrese un numero valido (no letras).\n");
-            while (getchar() != '\n'); // limpia el búfer
-            continue; // volver a pedir la cantidad de estudiantes
-        }
+            if (scanf("%d", &opcion) != 1) {
+                printf("Error: ingrese un numero valido (no letras).\n");
+                while (getchar() != '\n');
+                continue;
+            }
 
-        if (cantidadE<1 || cantidadE>5){
-            printf("cantidad no valida, ingrese un numero entre 1 y 5\n");
-            cantidadE=0;
-        }
+            if (opcion < 1 || opcion > 7) {
+                printf("Opción no valida, por favor intente de nuevo.\n");
+            }
 
-    } while(cantidadE<1 || cantidadE>5); 
-    
-    for(int i = 0; i < cantidadE; i++) {
-        printf("Ingrese el nombre del estudiante %d: ", i+1);
-        if (scanf("%d", &nombre[i]) == 1) {
-            fflush(stdin);
-            printf("Error al leer el nombre\n");
-            i--; // Reintentar el mismo estudiante
-        }
-            else{
-            scanf("%s", &nombre[i]);
-        }
-        
-    }
-    break;
-case 2:
-    // Leer nombres de asignaturas
-    for(int j = 0; j < 3; j++) {
-        printf("Ingrese el nombre de la asignatura %d: ", j+1);
-        if (scanf("%d", &asignatura[j]) ==1){
-            fflush(stdin);
-            printf("Error al leer la asignatura\n");
-            j--; // Reintentar la misma asignatura
-        }
-        else{
-            scanf("%s", asignatura[j]);
-        }
-    }
-    asignaturaI=1; // controla que las asignaturas fueran ingresadas
-    break;
+        } while (opcion < 1 || opcion > 7);
 
-case 3:
-// Leer calificaciones por estudiante y asignatura
-    if (cantidadE == 0) { // verificar si los estudiantes fueron ingresados con anterioridad
+        switch (opcion) {
+
+        case 1:
+            // Ingresar nombres de estudiantes
+            do {
+                printf("Cuantos estudiantes desea ingresar (1-5): ");
+                if (scanf("%d", &cantidadE) != 1) {
+                    printf("Error: ingrese un numero valido.\n");
+                    while (getchar() != '\n');
+                    continue;
+                }
+                if (cantidadE < 1 || cantidadE > 5) {
+                    printf("Cantidad no valida. Debe ser entre 1 y 5.\n");
+                }
+            } while (cantidadE < 1 || cantidadE > 5);
+
+            for (int i = 0; i < cantidadE; i++) {
+                printf("Ingrese el nombre del estudiante %d: ", i + 1);
+                scanf("%s", nombre[i]);
+            }
+            break;
+
+        case 2:
+            // Ingresar nombres de asignaturas
+            for (int j = 0; j < 3; j++) {
+                printf("Ingrese el nombre de la asignatura %d: ", j + 1);
+                scanf("%s", asignatura[j]);
+            }
+            asignaturaI = 1;
+            break;
+
+        case 3:
+            if (cantidadE == 0) {
                 printf("Primero debe ingresar los estudiantes (opcion 1).\n");
                 break;
             }
-    
+            if (asignaturaI == 0) {
+                printf("Primero debe ingresar las asignaturas (opcion 2).\n");
+                break;
+            }
 
-    float calificacion[5][3][2]; // 5 estudiantes, 3 asignaturas, 2 notas por asignatura
-    for (int i = 0; i < cantidadE; i++) {
-        printf("Ingrese las calificaciones del estudiante %s:\n", nombre[i]);
-        float sumaMaterias = 0;
+            int materiaSeleccionada;
+            while (1) {
+                printf("\nSeleccione la asignatura para ingresar calificaciones:\n");
+                for (int j = 0; j < 3; j++) {
+                    printf("%d. %s\n", j + 1, asignatura[j]);
+                }
+                printf("Ingrese el numero de la asignatura (1-3): ");
 
-        for (int j = 0; j < 3; j++) {
-            float sumaNotas = 0;
-
-            for (int q = 0; q < 2; q++) {
-                int valido = 0;
-                while (!valido) {
-                    printf("  Calificacion %d para %s: ", q + 1, asignatura[j]);
-                    int resultado = scanf("%f", &calificacion[i][j][q]);
-
-                    if (resultado != 1) {
-                        printf("Error: ingrese un numero valido (no letras).\n");
-                        while (getchar() != '\n'); // limpia el búfer
-                        continue; // volver a pedir la nota
-                    }
-
-                    if (calificacion[i][j][q] < 0 || calificacion[i][j][q] > 10) {
-                        printf("Error: la nota debe estar entre 0 y 10.\n");
-                        continue;
-                    }
-
-                    valido = 1; // si llegó aquí, la nota es válida
+                if (scanf("%d", &materiaSeleccionada) != 1) {
+                    printf("Error: ingrese un numero valido (no letras).\n");
+                    while (getchar() != '\n');
+                    continue;
                 }
 
-                sumaNotas += calificacion[i][j][q];
+                if (materiaSeleccionada < 1 || materiaSeleccionada > 3) {
+                    printf("Error: ingrese un numero entre 1 y 3.\n");
+                    continue;
+                }
+
+                break;
             }
 
-            PromedioC[i][j] = sumaNotas / 2.0;
-            sumaMaterias += PromedioC[i][j];
+            {
+                int indiceMateria = materiaSeleccionada - 1;
+                printf("\nIngresando calificaciones para: %s\n", asignatura[indiceMateria]);
+
+                for (int i = 0; i < cantidadE; i++) {
+                    float suma = 0;
+                    printf("\nEstudiante: %s\n", nombre[i]);
+
+                    for (int n = 0; n < 2; n++) {
+                        float nota;
+                        while (1) {
+                            printf("  Calificacion %d: ", n + 1);
+                            if (scanf("%f", &nota) != 1) {
+                                printf("Error: ingrese un numero valido.\n");
+                                while (getchar() != '\n');
+                                continue;
+                            }
+                            if (nota < 0 || nota > 10) {
+                                printf("Error: la nota debe estar entre 0 y 10.\n");
+                                continue;
+                            }
+                            break;
+                        }
+                        suma += nota;
+                    }
+                    PromedioC[i][indiceMateria] = suma / 2.0;
+                }
+
+                // Calcular promedio final de cada estudiante
+                for (int i = 0; i < cantidadE; i++) {
+                    float total = 0;
+                    int materias = 0;
+                    for (int k = 0; k < 3; k++) {
+                        if (PromedioC[i][k] > 0) {
+                            total += PromedioC[i][k];
+                            materias++;
+                        }
+                    }
+                    PromedioF[i] = (materias > 0) ? total / materias : 0;
+                }
+
+                calificacionE = 1;
+                printf("\n✅ Calificaciones registradas correctamente para %s.\n", asignatura[indiceMateria]);
+            }
+            break;
+
+        case 4:
+            if (!cantidadE || !asignaturaI || !calificacionE) {
+                printf("Debe completar las opciones 1, 2 y 3 primero.\n");
+                break;
+            }
+
+            printf("\n---------------------------------- CALIFICACIONES ----------------------------------\n");
+            printf("#\t%-15s\t%s\t%s\t%s\tPromedioF\n", "Estudiante", asignatura[0], asignatura[1], asignatura[2]);
+            for (int i = 0; i < cantidadE; i++) {
+                printf("%d\t%-15s\t%.2f\t%.2f\t%.2f\t%.2f\n", i + 1, nombre[i],
+                       PromedioC[i][0], PromedioC[i][1], PromedioC[i][2], PromedioF[i]);
+            }
+            break;
+
+        case 5:
+            if (!cantidadE || !asignaturaI || !calificacionE) {
+                printf("Debe completar las opciones 1, 2 y 3 primero.\n");
+                break;
+            }
+
+            printf("\n--------------- NOTA MAXIMA Y MINIMA POR ESTUDIANTE ---------------\n");
+            for (int i = 0; i < cantidadE; i++) {
+                float max = PromedioC[i][0], min = PromedioC[i][0];
+                for (int k = 1; k < 3; k++) {
+                    if (PromedioC[i][k] > max) max = PromedioC[i][k];
+                    if (PromedioC[i][k] < min) min = PromedioC[i][k];
+                }
+                printf("%-15s\tMax: %.2f\tMin: %.2f\n", nombre[i], max, min);
+            }
+            break;
+
+        case 6: {
+            if (!cantidadE || !asignaturaI || !calificacionE) {
+                printf("Debe completar las opciones 1, 2 y 3 primero.\n");
+                break;
+            }
+
+            int materiaSeleccionada6;
+            while (1) {
+                printf("\nSeleccione la asignatura que desea consultar:\n");
+                for (int a = 0; a < 3; a++) {
+                    printf("%d. %s\n", a + 1, asignatura[a]);
+                }
+                printf("Ingrese el numero de la asignatura (1-3): ");
+
+                if (scanf("%d", &materiaSeleccionada6) != 1) {
+                    printf("Error: ingrese un numero valido (no letras).\n");
+                    while (getchar() != '\n');
+                    continue;
+                }
+                if (materiaSeleccionada6 < 1 || materiaSeleccionada6 > 3) {
+                    printf("Error: numero fuera de rango.\n");
+                    continue;
+                }
+                break;
+            }
+
+            int idx = materiaSeleccionada6 - 1;
+            aprobados[idx] = 0;
+            reprobados[idx] = 0;
+
+            printf("\n---------------------- RESULTADOS DE %s ----------------------\n", asignatura[idx]);
+            printf("#   %-15s %-15s %-10s\n", "Estudiante", "Promedio", "Estado");
+            printf("-------------------------------------------------------------\n");
+
+            for (int i = 0; i < cantidadE; i++) {
+                char estado[12];
+                if (PromedioC[i][idx] >= 6.0) {
+                    sprintf(estado, "Aprobado");
+                    aprobados[idx]++;
+                } else {
+                    sprintf(estado, "Reprobado");
+                    reprobados[idx]++;
+                }
+                printf("%-3d %-15s %-15.2f %-10s\n", i + 1, nombre[i], PromedioC[i][idx], estado);
+            }
+            printf("-------------------------------------------------------------\n");
+            printf("Aprobados: %d   Reprobados: %d\n", aprobados[idx], reprobados[idx]);
+            break;
         }
 
-        PromedioF[i] = sumaMaterias / 3.0;
-    }
-    calificacionE=1; // controla que las calificaciones fueran ingresadas
-    break;
-
-    case 4:
-    if (cantidadE == 0) { // verificar si los estudiantes fueron ingresados con anterioridad
-                printf("Primero debe ingresar los estudiantes (opcion 1).\n");
-                break;
-            }
-    if (asignaturaI == 0) { // verificar si las asignaturas fueron ingresados con anterioridad
-                printf("Ingrese las asignaturas (opcion 2).\n");
-                break;
-            }
-    if (calificacionE == 0) { // verificar si las calificaciones fueron ingresados con anterioridad
-                printf("Ingrese las calificaciones (opcion 3).\n");
-                break;
-            }
-    // Imprimir tabla de calificaciones
-     printf("\n-------------------------------------Calificaciones------------------------------------\n");
-    printf("#\tEstudiante\t\t%s\t%s\t%s\tPromedioF\n", asignatura[0], asignatura[1], asignatura[2]);
-    for(int i = 0; i < cantidadE; i++) {
-        printf("%d\t%s\t\t\t%.2f\t%.2f\t%.2f\t%.2f\n", i+1, nombre[i], PromedioC[i][0], PromedioC[i][1], PromedioC[i][2], PromedioF[i]);
-    }
-    break;
-
-    case 5:
-    if (cantidadE == 0) { // verificar si los estudiantes fueron ingresados con anterioridad
-                printf("Primero debe ingresar los estudiantes (opcion 1).\n");
-                break;
-            }
-    if (asignaturaI == 0) { // verificar si las asignaturas fueron ingresados con anterioridad
-                printf("Ingrese las asignaturas (opcion 2).\n");
-                break;
-            }
-    if (calificacionE == 0) { // verificar si las calificaciones fueron ingresados con anterioridad
-                printf("Ingrese las calificaciones (opcion 3).\n");
-                break;
-            }
-    // Calcular promedios, máximos y mínimos por estudiante
-    for (int i = 0; i < cantidadE; i++) {
-        float max = PromedioC[i][0];
-        float min = PromedioC[i][0];
-        for (int j = 1; j < 3; j++) {
-            if (PromedioC[i][j] > max) max = PromedioC[i][j];
-            if (PromedioC[i][j] < min) min = PromedioC[i][j];
+        case 7:
+            printf("\nSaliendo del programa...\n");
+            return 0;
         }
-        maxEstudiante[i] = max;
-        minEstudiante[i] = min;
-    }
-    printf("\n---------------------- NOTA MAXIMA Y MINIMA POR ESTUDIANTE ----------------------\n"); 
-    for (int i = 0; i < cantidadE; i++) { 
-    printf("%-20s\tMax: %.2f\tMin: %.2f\n", nombre[i], maxEstudiante[i], minEstudiante[i]);
-    };
-    break;
-    case 6:
-    if (cantidadE == 0) { // verificar si los estudiantes fueron ingresados con anterioridad
-                printf("Primero debe ingresar los estudiantes (opcion 1).\n");
-                break;
-            }
-    if (asignaturaI == 0) { // verificar si las asignaturas fueron ingresados con anterioridad
-                printf("Ingrese las asignaturas (opcion 2).\n");
-                break;
-            }
-    if (calificacionE == 0) { // verificar si las calificaciones fueron ingresados con anterioridad
-                printf("Ingrese las calificaciones (opcion 3).\n");
-                break;
-            }
-    // Calcular promedio, máximo, mínimo y aprobados/reprobados por asignatura
-    for (int j = 0; j < 3; j++) {
-        float suma = 0;
-        float max = PromedioC[0][j];
-        float min = PromedioC[0][j];
- 
-        for (int i = 0; i < cantidadE; i++) {
-            suma += PromedioC[i][j];
- 
-            if (PromedioC[i][j] > max) max = PromedioC[i][j];
-            if (PromedioC[i][j] < min) min = PromedioC[i][j];
- 
-            if (PromedioC[i][j] >= 6)
-                aprobados[j]++;
-            else
-                reprobados[j]++;
-        }
- 
-        PromedioF[j] = suma / 5;
-        maxAsignatura[j] = max;
-        minAsignatura[j] = min;
-    }
 
-    
-    
-    printf("\n---------------------- APROBADOS Y REPROBADOS POR ASIGNATURA ----------------------\n");
-    for (int j = 0; j < 3; j++) {
-        printf("%-15s\tAprobados: %d\tReprobados: %d\n", asignatura[j], aprobados[j], reprobados[j]);
-    }
-    break;
-    case 7:
-    printf("saliendo del programa...\n");
+        // preguntar si desea continuar (solo si no eligió 7)
+        do {
+            printf("\nDesea continuar en el programa? 1 = Si, 2 = No: ");
+            if (scanf("%d", &continuar) != 1) {
+                printf("Error: ingrese un numero válido.\n");
+                while (getchar() != '\n');
+                continue;
+            }
+        } while (continuar != 1 && continuar != 2);
+
+    } while (continuar == 1);
+
     return 0;
-} 
-    // preguntar si desea continuar
-    // validar que la entrada sea un numero del 1 al 2 y no letras
-    do {
-        printf("desea continuar en el programa 1=si 2=no : ");
-        if (scanf("%d", &continuar) != 1) 
-         {
-            printf("Error: ingrese un numero valido (no letras).\n");
-            while (getchar() != '\n'); // limpia el búfer
-         }
-    } while(continuar!=1 && continuar!=2);
-    
-    
-    } while(continuar==1);
-   
-}    
+}
