@@ -140,7 +140,7 @@ int main() {
                 }
 
                 calificacionE = 1;
-                printf("\n✅ Calificaciones registradas correctamente para %s.\n", asignatura[indiceMateria]);
+                printf("\n Calificaciones registradas correctamente para %s.\n", asignatura[indiceMateria]);
             }
             break;
 
