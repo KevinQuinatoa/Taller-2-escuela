@@ -3,7 +3,7 @@
 int main() {
     char nombre[5][20];
     char asignatura[3][30];
-    float PromedioC[5][3] = {0}; // calificaciones por estudiante y asignatura
+    float PromedioC[5][3] = {0}; // calificaciones por estudiante A y asignatura
     float PromedioF[5] = {0};    // promedio final por estudiante 
     float maxEstudiante[5], minEstudiante[5];
     int aprobados[3] = {0}, reprobados[3] = {0};
