@@ -4,7 +4,7 @@ int main() {
     char nombre[5][20];
     char asignatura[3][30];
     float PromedioC[5][3] = {0}; // calificaciones por estudiante y asignatura y cambio todo lo demas
-    float PromedioF[5] = {0};    // promedio final por estudiante
+    float PromedioF[5] = {0};    // promedio final por estudiante kevin borra esto
 
     float maxEstudiante[5], minEstudiante[5];
     int aprobados[3] = {0}, reprobados[3] = {0};
